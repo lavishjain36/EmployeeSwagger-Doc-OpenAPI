@@ -1,23 +1,23 @@
-package com.emp.employeeopenapidoc.config; // config package
+package com.emp.employeeopenapidoc.config; // settings folder
 
-import io.swagger.v3.oas.models.OpenAPI; // OpenAPI document object
-import io.swagger.v3.oas.models.info.Info; // title / version / description
-import io.swagger.v3.oas.models.servers.Server; // base URL in Swagger
-import org.springframework.context.annotation.Bean; // register a Spring bean
-import org.springframework.context.annotation.Configuration; // mark as config class
+import io.swagger.v3.oas.models.OpenAPI; // the Swagger document
+import io.swagger.v3.oas.models.info.Info; // name and description of the API
+import io.swagger.v3.oas.models.servers.Server; // address where the API runs
+import org.springframework.context.annotation.Bean; // give this object to Spring
+import org.springframework.context.annotation.Configuration; // this file is settings, not an API
 
-import java.util.List; // list of servers
+import java.util.List; // a list
 
-@Configuration // Spring loads this at startup
-public class OpenApiConfig { // Swagger metadata
+@Configuration // load these settings when the app starts
+public class OpenApiConfig { // Swagger page heading and address
 
-	@Bean // Spring keeps this OpenAPI object
-	public OpenAPI employeeOpenApi() { // build the spec header
-		return new OpenAPI() // new OpenAPI document
-				.info(new Info() // API info block
-						.title("Employee API") // name in Swagger UI
-						.version("1.0.0") // API version
-						.description("CRUD APIs for employees. Try them in Swagger UI.")) // short help text
-				.servers(List.of(new Server().url("http://localhost:8080").description("Local"))); // Try-it-out host
-	} // end employeeOpenApi
-} // end class
+	@Bean // keep this so Swagger UI can use it
+	public OpenAPI employeeOpenApi() { // build what you see at the top of Swagger
+		return new OpenAPI() // start a new Swagger document
+				.info(new Info() // name block
+						.title("Employee API") // big title on the Swagger page
+						.version("1.0.0") // version number
+						.description("CRUD APIs for employees. Try them in Swagger UI.")) // short note for learners
+				.servers(List.of(new Server().url("http://localhost:8080").description("Local"))); // "try it" uses this computer
+	} // done building Swagger info
+} // end of file

@@ -1,12 +1,12 @@
-package com.emp.employeeopenapidoc; // root package of the app
+package com.emp.employeeopenapidoc; // home folder for the whole app
 
-import org.springframework.boot.SpringApplication; // helper that starts Spring
-import org.springframework.boot.autoconfigure.SpringBootApplication; // turns on auto-config
+import org.springframework.boot.SpringApplication; // tool that starts the app
+import org.springframework.boot.autoconfigure.SpringBootApplication; // turns on the usual Spring setup
 
-@SpringBootApplication // scan beans, start Tomcat, load JPA
-public class EmployeeopenapidocApplication { // class you Run in the IDE
+@SpringBootApplication // start the website and connect everything
+public class EmployeeopenapidocApplication { // the class you click Run on
 
-	public static void main(String[] args) { // JVM entry point
-		SpringApplication.run(EmployeeopenapidocApplication.class, args); // start the API
-	} // end main
-} // end class
+	public static void main(String[] args) { // where the program begins
+		SpringApplication.run(EmployeeopenapidocApplication.class, args); // turn the API on
+	} // finished starting
+} // end of file

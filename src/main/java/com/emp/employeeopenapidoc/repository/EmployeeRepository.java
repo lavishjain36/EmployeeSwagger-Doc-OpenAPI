@@ -1,12 +1,12 @@
-package com.emp.employeeopenapidoc.repository; // repository package
+package com.emp.employeeopenapidoc.repository; // folder that talks to the database
 
-import com.emp.employeeopenapidoc.model.Employee; // entity this repo stores
-import org.springframework.data.jpa.repository.JpaRepository; // built-in CRUD
+import com.emp.employeeopenapidoc.model.Employee; // we store Employee records
+import org.springframework.data.jpa.repository.JpaRepository; // ready-made save / find / delete
 
-public interface EmployeeRepository extends JpaRepository<Employee, Long> { // Employee + Long id
-	// JpaRepository already has: save, findAll, findById, deleteById
+public interface EmployeeRepository extends JpaRepository<Employee, Long> { // Employee, number is Long
+	// already included: save, find everyone, find by number, delete by number
 
-	boolean existsByEmailIgnoreCase(String email); // true if email already used (create)
+	boolean existsByEmailIgnoreCase(String email); // is this email already taken? (when adding)
 
-	boolean existsByEmailIgnoreCaseAndIdNot(String email, Long id); // true if another row has this email (update)
-} // end interface
+	boolean existsByEmailIgnoreCaseAndIdNot(String email, Long id); // is this email used by someone else? (when editing)
+} // end of file

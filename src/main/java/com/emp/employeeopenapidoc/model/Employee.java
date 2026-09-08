@@ -1,96 +1,96 @@
-package com.emp.employeeopenapidoc.model; // model package
+package com.emp.employeeopenapidoc.model; // folder for the person shape
 
-import io.swagger.v3.oas.annotations.media.Schema; // Swagger field docs
-import jakarta.persistence.Column; // column options
-import jakarta.persistence.Entity; // JPA entity
-import jakarta.persistence.GeneratedValue; // auto id
-import jakarta.persistence.GenerationType; // IDENTITY = AUTO_INCREMENT
-import jakarta.persistence.Id; // primary key
-import jakarta.persistence.Table; // table name
-import jakarta.validation.constraints.Email; // must look like email
-import jakarta.validation.constraints.NotBlank; // must not be empty
-import jakarta.validation.constraints.Size; // max length
+import io.swagger.v3.oas.annotations.media.Schema; // sample text in Swagger
+import jakarta.persistence.Column; // extra rules for one column
+import jakarta.persistence.Entity; // this class is a database table
+import jakarta.persistence.GeneratedValue; // number is created for us
+import jakarta.persistence.GenerationType; // how the number is created
+import jakarta.persistence.Id; // this field is the unique number
+import jakarta.persistence.Table; // name of the table
+import jakarta.validation.constraints.Email; // must look like an email
+import jakarta.validation.constraints.NotBlank; // cannot be empty
+import jakarta.validation.constraints.Size; // cannot be too long
 
-@Entity // map class to a table
-@Table(name = "employees") // table name in MySQL
-@Schema(description = "Employee") // Swagger body name
-public class Employee { // one employee
+@Entity // save this as a table
+@Table(name = "employees") // table is called employees
+@Schema(description = "Employee") // Swagger calls this an Employee
+public class Employee { // one person at work
 
-	@Id // primary key
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL AUTO_INCREMENT
-	@Schema(example = "1", accessMode = Schema.AccessMode.READ_ONLY) // do not type id on create
-	private Long id; // employee number
+	@Id // unique number for this person
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL picks the next number
+	@Schema(example = "1", accessMode = Schema.AccessMode.READ_ONLY) // you don't type this when adding someone
+	private Long id; // person's number
 
-	@NotBlank // 400 if blank
-	@Size(max = 50) // max 50 chars
-	@Schema(example = "Priya") // Swagger example
-	private String firstName; // given name
+	@NotBlank // first name is required
+	@Size(max = 50) // first name up to 50 letters
+	@Schema(example = "Priya") // sample first name in Swagger
+	private String firstName; // first name
 
-	@NotBlank // 400 if blank
-	@Size(max = 50) // max 50 chars
-	@Schema(example = "Sharma") // Swagger example
-	private String lastName; // family name
+	@NotBlank // last name is required
+	@Size(max = 50) // last name up to 50 letters
+	@Schema(example = "Sharma") // sample last name in Swagger
+	private String lastName; // last name
 
-	@NotBlank // 400 if blank
-	@Email // 400 if not an email
-	@Column(unique = true) // unique in MySQL
-	@Schema(example = "priya.sharma@example.com") // Swagger example
-	private String email; // work email
+	@NotBlank // email is required
+	@Email // must be a real-looking email
+	@Column(unique = true) // two people cannot share an email
+	@Schema(example = "priya.sharma@example.com") // sample email in Swagger
+	private String email; // email address
 
-	@NotBlank // 400 if blank
-	@Size(max = 80) // max 80 chars
-	@Schema(example = "Engineering") // Swagger example
-	private String department; // team / dept
+	@NotBlank // department is required
+	@Size(max = 80) // department up to 80 letters
+	@Schema(example = "Engineering") // sample department in Swagger
+	private String department; // which team
 
-	@Size(max = 80) // optional, max 80 chars
-	@Schema(example = "Software Engineer") // Swagger example
-	private String jobTitle; // role
+	@Size(max = 80) // job title is optional, up to 80 letters
+	@Schema(example = "Software Engineer") // sample job title in Swagger
+	private String jobTitle; // job title
 
-	public Long getId() { // read id
-		return id; // return stored id
-	} // end getId
+	public Long getId() { // give back the number
+		return id; // the number
+	} // done
 
-	public void setId(Long id) { // write id
-		this.id = id; // save id
-	} // end setId
+	public void setId(Long id) { // change the number
+		this.id = id; // store the number
+	} // done
 
-	public String getFirstName() { // read first name
-		return firstName; // return stored first name
-	} // end getFirstName
+	public String getFirstName() { // give back first name
+		return firstName; // the first name
+	} // done
 
-	public void setFirstName(String firstName) { // write first name
-		this.firstName = firstName; // save first name
-	} // end setFirstName
+	public void setFirstName(String firstName) { // change first name
+		this.firstName = firstName; // store first name
+	} // done
 
-	public String getLastName() { // read last name
-		return lastName; // return stored last name
-	} // end getLastName
+	public String getLastName() { // give back last name
+		return lastName; // the last name
+	} // done
 
-	public void setLastName(String lastName) { // write last name
-		this.lastName = lastName; // save last name
-	} // end setLastName
+	public void setLastName(String lastName) { // change last name
+		this.lastName = lastName; // store last name
+	} // done
 
-	public String getEmail() { // read email
-		return email; // return stored email
-	} // end getEmail
+	public String getEmail() { // give back email
+		return email; // the email
+	} // done
 
-	public void setEmail(String email) { // write email
-		this.email = email; // save email
-	} // end setEmail
+	public void setEmail(String email) { // change email
+		this.email = email; // store email
+	} // done
 
-	public String getDepartment() { // read department
-		return department; // return stored department
-	} // end getDepartment
+	public String getDepartment() { // give back department
+		return department; // the department
+	} // done
 
-	public void setDepartment(String department) { // write department
-		this.department = department; // save department
-	} // end setDepartment
+	public void setDepartment(String department) { // change department
+		this.department = department; // store department
+	} // done
 
-	public String getJobTitle() { // read job title
-		return jobTitle; // return stored job title
-	} // end getJobTitle
+	public String getJobTitle() { // give back job title
+		return jobTitle; // the job title
+	} // done
 
-	public void setJobTitle(String jobTitle) { // write job title
-		this.jobTitle = jobTitle; // save job title
-	} // end setJobTitle
-} // end class
+	public void setJobTitle(String jobTitle) { // change job title
+		this.jobTitle = jobTitle; // store job title
+	} // done
+} // end of file
