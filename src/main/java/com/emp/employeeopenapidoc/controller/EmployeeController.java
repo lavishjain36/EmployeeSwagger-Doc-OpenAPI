@@ -35,10 +35,15 @@ public class EmployeeController { // the doors people call (Get, Add, Change, Re
 		this.employeeService = employeeService; // remember it
 	} // constructor done
 
+	private void debug(String message) { // print to console while testing APIs
+		System.out.println("[API DEBUG] " + message); // shows in the run window
+	} // helper done
+
 	@GetMapping // show everyone: GET /api/v1/employees
 	@Operation(summary = "List employees") // Swagger button name
 	@ApiResponse(responseCode = "200", description = "List of employees") // success in Swagger
 	public List<Employee> list() { // return everyone
+		debug("GET /api/v1/employees - list all"); // console: someone asked for everyone
 		return employeeService.findAll(); // ask the service for all people
 	} // done
 
@@ -50,6 +55,7 @@ public class EmployeeController { // the doors people call (Get, Add, Change, Re
 	}) // end list of results
 	public Employee getById( // one person
 			@Parameter(description = "Employee id", example = "1") @PathVariable Long id) { // number from the URL
+		debug("GET /api/v1/employees/" + id); // console: which id was asked for
 		return employeeService.findById(id); // look them up
 	} // done
 
@@ -61,7 +67,9 @@ public class EmployeeController { // the doors people call (Get, Add, Change, Re
 			@ApiResponse(responseCode = "409", description = "Email already exists", content = @Content) // email already used
 	}) // end list of results
 	public ResponseEntity<Employee> create(@Valid @RequestBody Employee employee) { // read JSON, reject empty/bad email
+		debug("POST /api/v1/employees - email=" + employee.getEmail()); // console: who we are adding
 		Employee created = employeeService.create(employee); // save the new person
+		debug("created id=" + created.getId()); // console: new person's number
 		return ResponseEntity.created(URI.create("/api/v1/employees/" + created.getId())).body(created); // "created" plus where to find them
 	} // done
 
@@ -76,6 +84,7 @@ public class EmployeeController { // the doors people call (Get, Add, Change, Re
 	public Employee update( // change all fields
 			@Parameter(description = "Employee id", example = "1") @PathVariable Long id, // number from the URL
 			@Valid @RequestBody Employee employee) { // new details from JSON
+		debug("PUT /api/v1/employees/" + id + " - email=" + employee.getEmail()); // console: who we are updating
 		return employeeService.update(id, employee); // save the changes
 	} // done
 
@@ -88,6 +97,7 @@ public class EmployeeController { // the doors people call (Get, Add, Change, Re
 	}) // end list of results
 	public void delete( // nothing to return
 			@Parameter(description = "Employee id", example = "1") @PathVariable Long id) { // number from the URL
+		debug("DELETE /api/v1/employees/" + id); // console: who we are removing
 		employeeService.delete(id); // remove them
 	} // done
 } // end of file
