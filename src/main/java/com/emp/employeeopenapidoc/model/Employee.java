@@ -1,6 +1,5 @@
 package com.emp.employeeopenapidoc.model; // folder for the person shape
 
-import io.swagger.v3.oas.annotations.media.Schema; // sample text in Swagger
 import jakarta.persistence.Column; // extra rules for one column
 import jakarta.persistence.Entity; // this class is a database table
 import jakarta.persistence.GeneratedValue; // number is created for us
@@ -13,37 +12,30 @@ import jakarta.validation.constraints.Size; // cannot be too long
 
 @Entity // save this as a table
 @Table(name = "employees") // table is called employees
-@Schema(description = "Employee") // Swagger calls this an Employee
 public class Employee { // one person at work
 
 	@Id // unique number for this person
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL picks the next number
-	@Schema(example = "1", accessMode = Schema.AccessMode.READ_ONLY) // you don't type this when adding someone
 	private Long id; // person's number
 
 	@NotBlank // first name is required
 	@Size(max = 50) // first name up to 50 letters
-	@Schema(example = "Priya") // sample first name in Swagger
 	private String firstName; // first name
 
 	@NotBlank // last name is required
 	@Size(max = 50) // last name up to 50 letters
-	@Schema(example = "Sharma") // sample last name in Swagger
 	private String lastName; // last name
 
 	@NotBlank // email is required
 	@Email // must be a real-looking email
 	@Column(unique = true) // two people cannot share an email
-	@Schema(example = "priya.sharma@example.com") // sample email in Swagger
 	private String email; // email address
 
 	@NotBlank // department is required
 	@Size(max = 80) // department up to 80 letters
-	@Schema(example = "Engineering") // sample department in Swagger
 	private String department; // which team
 
 	@Size(max = 80) // job title is optional, up to 80 letters
-	@Schema(example = "Software Engineer") // sample job title in Swagger
 	private String jobTitle; // job title
 
 	public Long getId() { // give back the number
